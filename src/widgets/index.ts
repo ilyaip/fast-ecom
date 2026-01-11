@@ -1,0 +1,6 @@
+export { AppHeader } from './header'
+export { HeroSection } from './hero-section'
+export { SolutionsSection } from './solutions-section'
+export { ApproachSection } from './approach-section'
+export { TeamSection } from './team-section'
+export { AppFooter } from './footer'
