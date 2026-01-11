@@ -14,6 +14,7 @@ const navigationItems: NavigationItem[] = [
   { id: 'hero', label: 'Главная', href: '#hero' },
   { id: 'solutions', label: 'Решения', href: '#solutions' },
   { id: 'approach', label: 'Подход', href: '#approach' },
+  { id: 'cases', label: 'Кейсы', href: '#cases' },
   { id: 'team', label: 'Команда', href: '#team' }
 ]
 

@@ -4,6 +4,7 @@ import {
   HeroSection,
   SolutionsSection,
   ApproachSection,
+  CasesSection,
   TeamSection,
   AppFooter
 } from '@/widgets'
@@ -16,6 +17,7 @@ import {
       <HeroSection />
       <SolutionsSection />
       <ApproachSection />
+      <CasesSection />
       <TeamSection />
     </main>
     <AppFooter />
