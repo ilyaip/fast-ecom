@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { AppLogo, AppButton, AnimatedSection, AppIcon } from '@/shared/ui'
+import { AppButton, AnimatedSection, AppIcon } from '@/shared/ui'
 import { useSmoothScroll } from '@/features/smooth-scroll'
 
 const { scrollToAnchor } = useSmoothScroll()
@@ -9,18 +9,32 @@ const handleCtaClick = () => {
   scrollToAnchor('solutions')
 }
 
+// Motivational words for balloon pop
+const motivationalWords = [
+  'Успех! 🚀',
+  'Рост! 📈',
+  'Продажи! 💰',
+  'Скорость! ⚡',
+  'Качество! ✨',
+  'Инновации! 💡',
+  'Результат! 🎯',
+  'Прибыль! 💎'
+]
+
 // Balloon state
 interface Balloon {
   id: number
   isPopped: boolean
-  showLogo: boolean
+  showWord: boolean
+  word: string
 }
 
 const balloons = ref<Balloon[]>(
   Array.from({ length: 8 }, (_, i) => ({
     id: i,
     isPopped: false,
-    showLogo: false
+    showWord: false,
+    word: motivationalWords[i] || 'Успех!'
   }))
 )
 
@@ -28,18 +42,18 @@ const popBalloon = (index: number) => {
   const balloon = balloons.value[index]
   if (!balloon || balloon.isPopped) return
 
-  // Pop the balloon and show logo
+  // Pop the balloon and show word
   balloons.value[index] = {
     ...balloon,
     isPopped: true,
-    showLogo: true
+    showWord: true
   }
 
-  // Hide logo after 1.5s
+  // Hide word after 1.5s
   setTimeout(() => {
     const current = balloons.value[index]
     if (current) {
-      balloons.value[index] = { ...current, showLogo: false }
+      balloons.value[index] = { ...current, showWord: false }
     }
   }, 1500)
 
@@ -47,7 +61,7 @@ const popBalloon = (index: number) => {
   setTimeout(() => {
     const current = balloons.value[index]
     if (current) {
-      balloons.value[index] = { ...current, isPopped: false, showLogo: false }
+      balloons.value[index] = { ...current, isPopped: false, showWord: false }
     }
   }, 3000)
 }
@@ -70,14 +84,14 @@ const popBalloon = (index: number) => {
               :class="`hero__balloon--${index + 1}`"
               @click.stop="popBalloon(index)"
             />
-            <!-- Pop effect + Logo -->
+            <!-- Pop effect + Word -->
             <div v-else class="hero__pop-container">
               <div class="hero__pop-effect" />
               <div 
-                class="hero__pop-logo"
-                :class="{ 'hero__pop-logo--visible': balloon.showLogo }"
+                class="hero__pop-word"
+                :class="{ 'hero__pop-word--visible': balloon.showWord }"
               >
-                <AppLogo size="sm" />
+                {{ balloon.word }}
               </div>
             </div>
           </div>
@@ -270,7 +284,7 @@ const popBalloon = (index: number) => {
   }
 }
 
-.hero__pop-logo {
+.hero__pop-word {
   position: absolute;
   display: flex;
   align-items: center;
@@ -278,9 +292,14 @@ const popBalloon = (index: number) => {
   opacity: 0;
   transform: scale(0.3);
   transition: opacity 0.4s ease, transform 0.4s ease;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  text-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  white-space: nowrap;
 }
 
-.hero__pop-logo--visible {
+.hero__pop-word--visible {
   opacity: 1;
   transform: scale(1);
 }
