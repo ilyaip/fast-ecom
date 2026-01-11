@@ -24,6 +24,11 @@ const handleImageError = () => {
 
 <template>
   <div :class="['app-logo', `app-logo--${size}`, `app-logo--${variant}`]">
+    <img 
+      src="/testlogo.png" 
+      alt="Logo" 
+      class="app-logo__icon"
+    />
     <img
       v-if="!imageError"
       :src="src"
@@ -42,6 +47,13 @@ const handleImageError = () => {
 .app-logo {
   display: inline-flex;
   align-items: center;
+  gap: 0.5rem;
+}
+
+.app-logo__icon {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
 }
 
 .app-logo__image {
