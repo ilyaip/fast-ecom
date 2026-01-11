@@ -8,6 +8,7 @@ import {
   TeamSection,
   AppFooter
 } from '@/widgets'
+import { ScrollToTop } from '@/shared/ui'
 </script>
 
 <template>
@@ -21,6 +22,7 @@ import {
       <TeamSection />
     </main>
     <AppFooter />
+    <ScrollToTop />
   </div>
 </template>
 
